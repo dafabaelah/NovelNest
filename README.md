@@ -51,16 +51,16 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 ## Installation
 
-#Composer update
+##Composer update
 ```composer install```
 
 #copy env
-```np .env.example .env
+```np .env.example .env```
 
-#generate key
+##generate key
 ```php artisan key:generate```
 
-#npm install
+##npm install
 ```npm install```
 #serve
 ```php artisan serve```
