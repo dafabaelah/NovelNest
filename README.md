@@ -55,7 +55,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 ```composer update```
 
 #copy env
-```np .env.example .env```
+```cp .env.example .env```
 
 ##generate key
 ```php artisan key:generate```
