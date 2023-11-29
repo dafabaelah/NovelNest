@@ -52,7 +52,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 ## Installation
 
 ##Composer update
-```composer install```
+```composer update```
 
 #copy env
 ```np .env.example .env```
