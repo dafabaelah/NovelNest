@@ -23,7 +23,7 @@ Route::get('/about', function () {
     return view('about');
 });
 Route::get('/genre', function () {
-    return view('genre');
+    return view('dashboard.user.index');
 });
 
 
