@@ -23,7 +23,10 @@ Route::get('/about', function () {
     return view('about');
 });
 Route::get('/genre', function () {
-    return view('dashboard.user.index');
+    return view('dashboard.user.genre.index');
+});
+Route::get('/mybook', function () {
+    return view('dashboard.user.mybook.index');
 });
 
 
