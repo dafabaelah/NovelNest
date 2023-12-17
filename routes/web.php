@@ -28,6 +28,9 @@ Route::get('/genre', function () {
 Route::get('/mybook', function () {
     return view('dashboard.user.mybook.index');
 });
+Route::get('/favorite', function () {
+    return view('dashboard.user.favorite.index');
+});
 
 
 
