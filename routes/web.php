@@ -25,6 +25,9 @@ Route::get('/about', function () {
 Route::get('/genre', function () {
     return view('dashboard.user.genre.index');
 });
+Route::get('/mybook', function () {
+    return view('dashboard.user.mybook.index');
+});
 
 
 
