@@ -31,10 +31,9 @@ Route::get('/mybook', function () {
 Route::get('/favorite', function () {
     return view('dashboard.user.favorite.index');
 });
-
-
-
-
+Route::get('/home', function () {
+    return view('dashboard.user.index');
+});
 Route::get('/login', function () {
     return view('login.index');
 });
