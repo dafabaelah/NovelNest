@@ -3,7 +3,7 @@
 @section('container')
     <div class="flex flex-wrap justify-center">
         <div class="max-w-sm mx-2 my-4 bg-white shadow-md rounded-lg overflow-hidden">
-            <img class="w-full h-64 object-cover object-center" src="https://via.placeholder.com/800x400" alt="Product Image">
+            <img class="w-full h-64 object-cover object-center" src="images/foto.jpg" alt="Product Image">
         
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800">Judul Buku</h2>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="max-w-sm mx-2 my-4 bg-white shadow-md rounded-lg overflow-hidden">
-            <img class="w-full h-64 object-cover object-center" src="https://via.placeholder.com/800x400" alt="Product Image">
+            <img class="w-full h-64 object-cover object-center" src="images/foto.jpg" alt="Product Image">
         
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800">Judul Buku</h2>
@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="max-w-sm mx-2 my-4 bg-white shadow-md rounded-lg overflow-hidden">
-            <img class="w-full h-64 object-cover object-center" src="https://via.placeholder.com/800x400" alt="Product Image">
+            <img class="w-full h-64 object-cover object-center" src="images/foto.jpg" alt="Product Image">
         
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800">Judul Buku</h2>
@@ -162,7 +162,7 @@
             </div>
         </div>
         <div class="max-w-sm mx-2 my-4 bg-white shadow-md rounded-lg overflow-hidden">
-            <img class="w-full h-64 object-cover object-center" src="https://via.placeholder.com/800x400" alt="Product Image">
+            <img class="w-full h-64 object-cover object-center" src="images/foto.jpg" alt="Product Image">
         
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800">Judul Buku</h2>
@@ -215,7 +215,7 @@
             </div>
         </div>
         <div class="max-w-sm mx-2 my-4 bg-white shadow-md rounded-lg overflow-hidden">
-            <img class="w-full h-64 object-cover object-center" src="https://via.placeholder.com/800x400" alt="Product Image">
+            <img class="w-full h-64 object-cover object-center" src="images/foto.jpg" alt="Product Image">
         
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800">Judul Buku</h2>
@@ -268,7 +268,7 @@
             </div>
         </div>
         <div class="max-w-sm mx-2 my-4 bg-white shadow-md rounded-lg overflow-hidden">
-            <img class="w-full h-64 object-cover object-center" src="https://via.placeholder.com/800x400" alt="Product Image">
+            <img class="w-full h-64 object-cover object-center" src="images/foto.jpg" alt="Product Image">
         
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800">Judul Buku</h2>

@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/bestSeller', function () {
+    return view('feedback');
+});
+Route::get('/feedback', function () {
+    return view('feedback');
+});
+
 Route::get('/home', function () {
     return view('home');
 });
@@ -38,6 +45,9 @@ Route::get('/login', function () {
     return view('login.index');
 });
 Route::get('/register', function () {
+    return view('register.index');
+});
+Route::get('/bestSeller', function () {
     return view('register.index');
 });
 
