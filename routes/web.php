@@ -47,7 +47,4 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register.index');
 });
-Route::get('/bestSeller', function () {
-    return view('register.index');
-});
 
