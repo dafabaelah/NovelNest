@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('images');
             $table->string('author');
-            $table->string('deskripsi_buku');
+            $table->string('deskripsi_buku ');
             $table->string('judul_buku');
             $table->timestamps();
         });
