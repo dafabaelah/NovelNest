@@ -47,3 +47,6 @@ Route::get('/admin', function () {
 Route::get('/admin/users', function () {
     return view('dashboard.admin.users.index');
 });
+Route::get('/admin/genre', function () {
+    return view('dashboard.admin.genre.index');
+});
