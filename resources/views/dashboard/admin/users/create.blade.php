@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="relative overflow-x-auto sm:rounded-lg max-w-2xl">
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit user</h2>
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah user</h2>
         <form action="#">
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
