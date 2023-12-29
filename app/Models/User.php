@@ -48,6 +48,7 @@ class User extends Authenticatable
     
     protected $dates = ['deleted_at'];
     public $timestamps = true;
+    protected $enums = ['admin', 'user'];
 
     public function hasRole($roles)
     {
