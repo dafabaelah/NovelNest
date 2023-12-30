@@ -30,7 +30,7 @@
                 </div> --}}
                 <div class="mt-4 flex items-center">
                     <span class="text-gray-500 flex items-center">
-                        <svg class="w-auto h-3 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
+                        <svg class="w-auto h-4 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
                             <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                 <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
                                 <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z"/>
@@ -39,9 +39,15 @@
                         <p>{{ $novel->total_view_novel }}</p>
                     </span>
                     <span class="text-gray-500 ml-5 flex items-center">
-                        <svg class="w-auto h-3 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z"/>
-                        </svg>
+                        <a href="{{ route('likeNovel', ['novelId' => $novel->id]) }}" onclick="event.preventDefault(); document.getElementById('like-form').submit();">
+                            <svg class="w-auto h-5 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z"/>
+                            </svg>
+                        </a>
+                        
+                        <form id="like-form" action="{{ route('likeNovel', ['novelId' => $novel->id]) }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                         <p class="flex-1">{{ $novel->total_like_novel }}</p>
                     </span>
                     <span class="text-gray-500 ml-auto">{{ $novel->jumlah_halaman_novel }} Halaman</span>
@@ -57,17 +63,9 @@
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="nextBtn" onclick="changeParagraph(1)">Next</button>
                     </div> --}}
                 </div>
-
-                <a href="{{ route('likeNovel', ['novelId' => $novel->id]) }}" onclick="event.preventDefault(); document.getElementById('like-form').submit();">
-                    Like Novel
-                </a>
-                
-                <form id="like-form" action="{{ route('likeNovel', ['novelId' => $novel->id]) }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
             
                 {{-- Tombol "Kembali" --}}
-                <a href="{{ route('home', ['id_novel' => $novel->id_novel]) }}" class="text-gray-600 hover:text-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm">Kembali</a>
+                <a href="{{ route('home') }}" class="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block">Kembali</a>
             </div>
         </div>
     </div>

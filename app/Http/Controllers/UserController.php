@@ -37,6 +37,8 @@ class UserController extends Controller
     public function readNovel($id)
     {
         $novel = Novel::findOrFail($id);
+
+        $novel->increment('total_view_novel');
         // dd($novel);
 
         if ($novel->gambar_novel) {
@@ -61,31 +63,38 @@ class UserController extends Controller
 
         // dd($progresMembaca);
 
-        // Assuming $novel->deskripsi_novel contains the paragraphs
-        $paragraphs = explode("</p>", $novel->deskripsi_novel);
+        // // Assuming $novel->deskripsi_novel contains the paragraphs
+        // $paragraphs = explode("</p>", $novel->deskripsi_novel);
 
-        // Filter out empty paragraphs
-        $paragraphs = array_filter($paragraphs);
+        // // Filter out empty paragraphs
+        // $paragraphs = array_filter($paragraphs);
 
-        // Count the number of paragraphs
-        $totalParagraphs = count($paragraphs);
+        // // Count the number of paragraphs
+        // $totalParagraphs = count($paragraphs);
 
-        // Check if the user has a reading history for this novel
-        $riwayatBaca = RiwayatBaca::where('id_user', $userId)->where('id_novel', $novel->id_novel)->first();
-        $totalPages = $novel->total_halaman;
-        $progresMembaca = $riwayatBaca ? round(($riwayatBaca->halaman_terakhir / $totalPages) * 100, 2) : 0;
+        // // Check if the user has a reading history for this novel
+        // $riwayatBaca = RiwayatBaca::where('id_user', $userId)->where('id_novel', $novel->id_novel)->first();
+        // $totalPages = $novel->total_halaman;
+        // $progresMembaca = $riwayatBaca ? round(($riwayatBaca->halaman_terakhir / $totalPages) * 100, 2) : 0;
 
+        // Mencari riwayat baca pengguna untuk novel tertentu
+        $riwayatBaca = RiwayatBaca::where('id_user', $userId)->where('id_novel', $novel->id)->first();
+
+    // Menghitung progres membaca
+        $totalPages = $novel->jumlah_halaman_novel;
+        // Check if $totalPages is not zero before performing the division
+        $progresMembaca = $totalPages != 0 ? ($riwayatBaca ? round(($riwayatBaca->halaman_terakhir / $totalPages) * 100, 2) : 0) : 0;
         if (!$riwayatBaca) {
             // If there is no reading history, create one with the total number of paragraphs
             RiwayatBaca::create([
                 'id_user' => $userId,
                 'id_novel' => $novel->id,
-                'halaman_terakhir' => $totalParagraphs,
+                'halaman_terakhir' => $totalPages,
             ]);
         } else {
             // If there is a reading history, update the reading progress
             $riwayatBaca->update([
-                'halaman_terakhir' => $totalParagraphs,
+                'halaman_terakhir' => $totalPages,
             ]);
         }
 
@@ -254,5 +263,30 @@ class UserController extends Controller
 
         // Redirect atau kembalikan respons sesuai kebutuhan
         return redirect()->back();
+    }
+
+    public function showReadingHistory() {
+        $userId = Auth::id();
+        $riwayatBaca = RiwayatBaca::select('id', 'id_user', 'id_novel', 'halaman_terakhir', 'created_at')
+            ->with(['novel' => function ($query) {
+                $query->select('id', 'nama_novel', 'gambar_novel', 'deskripsi_novel', 'total_view_novel', 'total_like_novel', 'jumlah_halaman_novel');
+            }])
+            ->where('id_user', $userId)
+            ->latest('created_at') // Order by the latest created_at
+            ->distinct('id_novel') // Select distinct novels
+            ->get();
+
+            // $riwayatBaca->each(function ($riwayat) {
+            //     // Access the related novel and update the attributes
+            //     $novel = $riwayat->novel;
+            
+            //     if ($novel->gambar_novel) {
+            //         $novel->gambar_novel = asset('storage/uploads/' . $novel->gambar_novel);
+            //     } else {
+            //         $novel->gambar_novel = null;
+            //     }
+            // });
+        // dd($riwayatBaca);
+        return view('dashboard.user.riwayat.index', compact('riwayatBaca'));
     }
 }

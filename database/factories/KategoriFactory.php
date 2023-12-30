@@ -22,7 +22,6 @@ class KategoriFactory extends Factory
         return [
             'nama_kategori' => $this->faker->word,
             'slug_kategori' => $this->faker->slug,
-            'gambar_kategori' => $this->faker->imageUrl(),
         ];
     }
 }
