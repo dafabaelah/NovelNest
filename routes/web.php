@@ -41,3 +41,6 @@ Route::get('/register', function () {
     return view('register.index');
 });
 
+Route::post('/authenticate', 'YourAuthController@login')->name('authenticate');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+
