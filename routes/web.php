@@ -21,29 +21,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 })->name('/');
-// Route::get('/bestSeller', function () {
-//     return view('feedback');
-// });
-// Route::get('/feedback', function () {
-//     return view('feedback');
-// });
-
-// Route::get('/home', function () {
-//     return view('home');
-// });
-// Route::get('/about', function () {
-//     return view('about');
-// });
-// Route::get('/genre', function () {
-//     return view('dashboard.user.genre.index');
-// });
-// Route::get('/mybook', function () {
-//     return view('dashboard.user.mybook.index');
-// });
-// Route::get('/favorite', function () {
-//     return view('dashboard.user.favorite.index');
-// });
-
 
 Route::middleware(['guest'])->group(function() {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -56,6 +33,15 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logoutUser');
     Route::get('/home', [UserController::class, 'home'])->name('home');
     Route::get('/reading/{id}', [UserController::class, 'readNovel'])->name('readNovel');
+    Route::get('/write', [UserController::class, 'writeNovel'])->name('writeNovel');
+    Route::post('/write/store', [UserController::class, 'writeNovelStore'])->name('writeNovelStore');
+    Route::get('/write/list', [UserController::class, 'listWriteNovel'])->name('listWriteNovel');
+    Route::get('/write/edit/{id}', [UserController::class, 'listWriteEdit'])->name('listWriteEdit');
+    Route::put('/write/update/{id}', [UserController::class, 'updateWriteEdit'])->name('updateWriteEdit');
+    Route::get('/mybook', [UserController::class, 'mybookIndex'])->name('mybookIndex');
+    Route::get('/kategori/{categorySlug}', [UserController::class, 'kategoriIndexSlug'])->name('kategoriIndexSlug');
+    Route::get('/kategori', [UserController::class, 'listKategori'])->name('listKategori');
+    Route::post('/like-novel/{novelId}', [UserController::class, 'likeNovel'])->name('likeNovel');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function() {

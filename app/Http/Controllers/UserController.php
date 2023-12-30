@@ -19,26 +19,7 @@ class UserController extends Controller
         $kategoris = Kategori::all(); // Mengambil semua data kategori
         return view('dashboard.user.kategori.index');
     }
-    public function mybook()
-    {
-        return view('dashboard.user.mybook.index');
-    }
-    public function favorite()
-    {
-        return view('dashboard.user.favorite.index');
-    }
-    public function feedback()
-    {
-        return view('dashboard.user.feedback.index');
-    }
-    public function bestSeller()
-    {
-        return view('dashboard.user.bestSeller.index');
-    }
-    public function about()
-    {
-        return view('dashboard.user.about.index');
-    }
+
     public function home()
     {
         $novels = Novel::all();
@@ -109,5 +90,169 @@ class UserController extends Controller
         }
 
         return view('dashboard.user.reading', compact('novel', 'progresMembaca'));
+    }
+
+    // write
+
+    public function writeNovel()
+    {
+        $kategori = Kategori::pluck('nama_kategori', 'id');
+        return view('dashboard.user.write.index', compact('kategori'));
+    }
+
+    public function writeNovelStore(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'nama_novel' => 'required|max:255',
+            'gambar_novel' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'id_kategori' => 'required|exists:kategoris,id',
+            'deskripsi_novel' => 'required',
+            'jumlah_halaman_novel' => 'required|integer|min:1',
+        ]);
+        try {
+            $userId = Auth::id();
+            // Validate the request
+    
+            $fileName = null;
+    
+            if ($request->hasFile('gambar_novel')) {
+                $file = $request->file('gambar_novel');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $fileName, 'public'); // Simpan file di storage/app/public/uploads
+            }
+    
+
+            $novel = Novel::create([
+                'nama_novel' => $request->nama_novel,
+                'gambar_novel' => $fileName,
+                'id_user' => $userId,
+                'id_kategori' => $request->id_kategori,
+                'deskripsi_novel' => $request->deskripsi_novel,
+                'jumlah_halaman_novel' => $request->jumlah_halaman_novel,
+            ]);
+    
+            // dd($novel);
+    
+            // Redirect or perform other actions
+            return redirect()->route('listWriteNovel')->with('success', 'Post created successfully');
+            //code...
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function listWriteNovel()
+    {
+        $userId = Auth::id();
+        $novels = Novel::where('id_user', $userId)->get();
+        return view('dashboard.user.write.list', compact('novels'));
+    }
+
+    public function listWriteEdit(Request $request, $id)
+    {   
+        $novel = Novel::findOrFail($id); // Mengambil data novel berdasarkan id
+        $kategori = Kategori::pluck('nama_kategori', 'id');
+        return view('dashboard.user.write.edit', compact('novel', 'kategori'));
+    }
+
+    public function updateWriteEdit(Request $request, $id)
+    {
+        dd($request->all());
+        $request->validate([
+            'nama_novel' => 'required|max:255',
+            'gambar_novel' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'id_kategori' => 'required|exists:kategoris,id',
+            'deskripsi_novel' => 'required',
+            'jumlah_halaman_novel' => 'required|integer|min:1',
+        ]);
+        try {
+            $novel = Novel::findOrFail($id);
+            $userId = Auth::id();
+    
+            $fileName = null;
+    
+            if ($request->hasFile('gambar_novel')) {
+                $file = $request->file('gambar_novel');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $fileName, 'public'); // Simpan file di storage/app/public/uploads
+            }
+
+            $dataToUpdate = [
+                'nama_novel' => $request->nama_novel,
+                'gambar_novel' => $fileName,
+                'id_user' => $userId,
+                'id_kategori' => $request->id_kategori,
+                'deskripsi_novel' => $request->deskripsi_novel,
+                'jumlah_halaman_novel' => $request->jumlah_halaman_novel,
+            ];
+
+            $novel->update($dataToUpdate);
+    
+            // Redirect or perform other actions
+            return redirect()->route('novelIndex')->with('success', 'Post created successfully');
+            //code...
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    // mybook
+    public function mybookIndex()
+    {
+        $userId = Auth::id();
+        $novels = Novel::where('id_user', $userId)->get();
+        $novels->each(function ($novel) {
+            if ($novel->gambar_novel) {
+                $novel->gambar_novel = asset('storage/uploads/' . $novel->gambar_novel);
+            } else {
+                $novel->gambar_novel = null;
+            }
+        });
+        return view('dashboard.user.mybook.index', compact('novels'));
+    }
+
+    // kategori views
+    public function kategoriIndexSlug($categorySlug)
+    {
+        // Ambil kategori berdasarkan slug
+        $category = Kategori::where('slug_kategori', $categorySlug)->firstOrFail();
+
+        // Ambil daftar novel berdasarkan kategori
+        $novels = Novel::where('id_kategori', $category->id)->get();
+        $novels->each(function ($novel) {
+            if ($novel->gambar_novel) {
+                $novel->gambar_novel = asset('storage/uploads/' . $novel->gambar_novel);
+            } else {
+                $novel->gambar_novel = null;
+            }
+        });
+        // Tampilkan view dengan data novel dan kategori
+        return view('dashboard.user.kategori.index', compact('novels', 'category'));
+    }
+
+    public function listKategori()
+    {
+        $kategoris = Kategori::all(); // Mengambil semua data kategori
+        $kategoris->each(function ($kategoris) {
+            if ($kategoris->gambar_kategori) {
+                $kategoris->gambar_kategori = asset('storage/uploads/' . $kategoris->gambar_kategori);
+            } else {
+                $kategoris->gambar_kategori = null;
+            }
+        });
+        return view('dashboard.user.kategori.list', compact('kategoris'));
+    }
+
+    public function likeNovel($novelId)
+    {
+        $novel = Novel::findOrFail($novelId);
+        
+        // Contoh: Tambahkan jumlah "like" pada novel
+        $novel->total_like_novel += 1;
+        $novel->save();
+
+        // Redirect atau kembalikan respons sesuai kebutuhan
+        return redirect()->back();
     }
 }

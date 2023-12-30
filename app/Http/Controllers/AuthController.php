@@ -46,25 +46,30 @@ class AuthController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            $user = Auth::user();
-            
-            switch ($user->role) {
-                case 'admin':
-                    return redirect()->route('admin');
-                    break;
-                case 'user':
-                    return redirect()->route('home');
-                    break;
-                default:
-                    return redirect()->route('/');
-                    break;
+        try {
+            if (Auth::attempt($request->only('email', 'password'))) {
+                $user = Auth::user();
+                
+                switch ($user->role) {
+                    case 'admin':
+                        return redirect()->route('admin');
+                        break;
+                    case 'user':
+                        return redirect()->route('home');
+                        break;
+                    default:
+                        return redirect()->route('/');
+                        break;
+                }
+    
+                return redirect()->route('home');
             }
-
-            return redirect()->route('home');
+    
+            return back()->with('status', 'Invalid login details');
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
 
-        return back()->with('status', 'Invalid login details');
     }
 
     public function logoutUser(Request $request)

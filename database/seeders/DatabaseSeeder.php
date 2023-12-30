@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::create([
             'name' => 'Mutiara admin',
-            'email' => 'Mutiaraadmin@gmail.com',
+            'email' => 'mutiaraadmin@gmail.com',
             'password' => bcrypt('12345789'),
             'role' => 'admin',
         ]);
         User::create([
             'name' => 'Mutiara',
-            'email' => 'Mutiara@gmail.com',
+            'email' => 'mutiara@gmail.com',
             'password' => bcrypt('12345789'),
             'role' => 'user',
         ]);
