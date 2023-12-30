@@ -88,8 +88,8 @@
 
 <section id="home" class="bg-blue-200 dark:bg-blue-200 pt-35 pb-16 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
     <div class="py-10 px-8 mx-auto max-w-screen-xl text-center lg:py-20">
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Selamat Datang Di Website NovelNest</h1>
-        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">NovelNest adalah Website yang mengenalkan dan mencerminkan beragam novel dengan membawa cerita ke buku yang diterbitkan dan ke rak buku di seluruh dunia. NovelNest menampilkan sebuah cerita website dan bisa kamu baca secara online.NovelNest tersebut akan update per-bab dengan jadwal tertentu, sehingga pembaca harus mengetahui jadwalnya agar tidak ketinggalan membaca.</p>
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-blue-900 md:text-5xl lg:text-6xl dark:text-blue-900">Selamat Datang Di Website NovelNest</h1>
+        <p class="mb-8 text-lg font-normal text-blue-900 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">NovelNest adalah Website yang mengenalkan dan mencerminkan beragam novel dengan membawa cerita ke buku yang diterbitkan dan ke rak buku di seluruh dunia. NovelNest menampilkan sebuah cerita website dan bisa kamu baca secara online.NovelNest tersebut akan update per-bab dengan jadwal tertentu, sehingga pembaca harus mengetahui jadwalnya agar tidak ketinggalan membaca.</p>
         <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                 Get started
@@ -138,6 +138,27 @@
     </div>
     <div class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
 </section>
+
+<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">About</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline">Contact</a>
+        </li>
+    </ul>
+    </div>
+</footer>
 
 </body>
 </html>
