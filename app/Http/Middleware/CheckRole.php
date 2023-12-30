@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
@@ -15,12 +17,25 @@ class CheckRole
      */
         public function handle(Request $request, Closure $next, ...$roles)
         {
-            if (! $request->user() || ! $request->user()->hasRole($roles)) {
-                // Jika pengguna tidak memiliki peran yang diizinkan
-                abort(403, 'Unauthorized action.');
+            $user = Auth::user();
+
+            if (!$user) {
+                return redirect('login');
             }
 
-            return $next($request);
+            // if (! $request->user() || ! $request->user()->hasRole($roles)) {
+            //     // Jika pengguna tidak memiliki peran yang diizinkan
+            //     abort(403, 'Unauthorized action.');
+            // }
+
+            foreach ($roles as $role) {
+                if ($request->user()->hasRole($role)) {
+                    return $next($request);
+                }
+            }
+            return redirect('/')->with('error', 'Unauthorized access.');
+
+            // return $next($request);
         }
     // public function handle($request, Closure $next, $role)
     // {
@@ -32,4 +47,6 @@ class CheckRole
 
     //     abort(403, 'Unauthorized.');
     // }
+
+
 }

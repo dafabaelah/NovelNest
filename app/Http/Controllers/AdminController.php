@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Novel;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -78,5 +81,127 @@ class AdminController extends Controller
         // $user->assignRole($request->role);
 
         return redirect()->route('userIndex')->with('success', 'User created successfully');
+    }
+    // kategori
+    public function kategoriIndex()
+    {
+        $kategoris = Kategori::all(); // Mengambil semua data kategori
+        return view('dashboard.admin.kategori.index', compact('kategoris'));
+    }
+
+    // Novel
+    public function novelIndex()
+    {
+        $novels = Novel::all(); // Mengambil semua data novel
+        return view('dashboard.admin.novel.index', compact('novels'));
+    }
+
+    public function novelEdit(Request $request, $id)
+    {   
+        $novel = Novel::findOrFail($id); // Mengambil data novel berdasarkan id
+        $kategori = Kategori::pluck('nama_kategori', 'id');
+        return view('dashboard.admin.novel.edit', compact('novel', 'kategori'));
+    }
+
+    public function novelCreate()
+    {
+        $kategori = Kategori::pluck('nama_kategori', 'id');
+        return view('dashboard.admin.novel.create', compact('kategori'));
+    }
+
+    public function novelStore(Request $request)
+    {
+        $request->validate([
+            'nama_novel' => 'required|max:255',
+            'gambar_novel' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'id_kategori' => 'required|exists:kategoris,id',
+            'deskripsi_novel' => 'required',
+            'jumlah_halaman_novel' => 'required|integer|min:1',
+        ]);
+        try {
+            $userId = Auth::id();
+            // Validate the request
+    
+            $fileName = null;
+    
+            if ($request->hasFile('gambar_novel')) {
+                $file = $request->file('gambar_novel');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $fileName, 'public'); // Simpan file di storage/app/public/uploads
+            }
+    
+
+            $novel = Novel::create([
+                'nama_novel' => $request->nama_novel,
+                'gambar_novel' => $fileName,
+                'id_user' => $userId,
+                'id_kategori' => $request->id_kategori,
+                'deskripsi_novel' => $request->deskripsi_novel,
+                'jumlah_halaman_novel' => $request->jumlah_halaman_novel,
+            ]);
+    
+            // dd($novel);
+    
+            // Redirect or perform other actions
+            return redirect()->route('novelIndex')->with('success', 'Post created successfully');
+            //code...
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function updateNovel(Request $request, $id)
+    {
+        
+        $request->validate([
+            'nama_novel' => 'required|max:255',
+            'gambar_novel' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'id_kategori' => 'required|exists:kategoris,id',
+            'deskripsi_novel' => 'required',
+            'jumlah_halaman_novel' => 'required|integer|min:1',
+        ]);
+        try {
+            $novel = Novel::findOrFail($id);
+            $userId = Auth::id();
+            // Hanya update password jika diisi
+            if ($request->filled('password')) {
+                $dataToUpdate['password'] = Hash::make($request->password);
+            }
+    
+            $fileName = null;
+    
+            if ($request->hasFile('gambar_novel')) {
+                $file = $request->file('gambar_novel');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $fileName, 'public'); // Simpan file di storage/app/public/uploads
+            }
+
+            $dataToUpdate = [
+                'nama_novel' => $request->nama_novel,
+                'gambar_novel' => $fileName,
+                'id_user' => $userId,
+                'id_kategori' => $request->id_kategori,
+                'deskripsi_novel' => $request->deskripsi_novel,
+                'jumlah_halaman_novel' => $request->jumlah_halaman_novel,
+            ];
+
+            $novel->update($dataToUpdate);
+    
+            // Redirect or perform other actions
+            return redirect()->route('novelIndex')->with('success', 'Post created successfully');
+            //code...
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+
+    public function logoutAdmin(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('/');
     }
 }
