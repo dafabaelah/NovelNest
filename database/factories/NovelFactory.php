@@ -23,7 +23,6 @@ class NovelFactory extends Factory
     {
         return [
             'nama_novel' => $this->faker->sentence,
-            'gambar_novel' => $this->faker->imageUrl(),
             'deskripsi_novel' => '<p>' . implode("</p>\n\n<p>", $this->faker->paragraphs(100)) . '</p>',
             'total_view_novel' => $this->faker->numberBetween(100, 1000),
             'total_like_novel' => $this->faker->numberBetween(50, 500),

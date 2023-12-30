@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Novel;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -82,11 +83,85 @@ class AdminController extends Controller
 
         return redirect()->route('userIndex')->with('success', 'User created successfully');
     }
+
     // kategori
     public function kategoriIndex()
     {
         $kategoris = Kategori::all(); // Mengambil semua data kategori
         return view('dashboard.admin.kategori.index', compact('kategoris'));
+    }
+    
+    public function kategoriCreate()
+    {
+        return view('dashboard.admin.kategori.create');
+    }
+
+    public function storeKategori(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'nama_kategori' => 'required|max:255|min:3',
+            'gambar_kategori' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        try {
+            $fileName = null;
+    
+            if ($request->hasFile('gambar_kategori')) {
+                $file = $request->file('gambar_kategori');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $fileName, 'public'); // Simpan file di storage/app/public/uploads
+            }
+            $slug_kategori = SlugService::createSlug(Kategori::class, 'slug_kategori', $request->nama_kategori);
+            
+            $kategori = Kategori::create([
+                'nama_kategori' => $request->nama_kategori,
+                'gambar_kategori' => $fileName,
+                'slug_kategori' => $slug_kategori,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+
+        return redirect()->route('kategoriIndex')->with('success', 'Kategori created successfully');
+    }
+
+    public function kategoriEdit(Request $request, $id)
+    {   
+        $kategori = Kategori::findOrFail($id); // Mengambil data kategori berdasarkan id
+        return view('dashboard.admin.kategori.edit', ['kategori' => $kategori]);
+    }
+
+    public function updateKategori(Request $request, $id)
+    {
+        
+        $kategori = Kategori::findOrFail($id);
+        
+
+        $request->validate([
+            'nama_kategori' => 'required|max:255|min:3',
+            'gambar_kategori' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $slug_kategori = SlugService::createSlug(Kategori::class, 'slug_kategori', $request->nama_kategori);
+
+        $dataToUpdate = [
+            'nama_kategori' => $request->nama_kategori,
+            'slug_kategori' => $slug_kategori,
+        ];
+
+        if ($request->hasFile('gambar_kategori')) {
+            $file = $request->file('gambar_kategori');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $fileName, 'public'); // Simpan file di storage/app/public/uploads
+
+            $dataToUpdate['gambar_kategori'] = $fileName;
+        }
+    
+        $kategori->update($dataToUpdate);
+
+        return redirect()->route('kategoriIndex')->with('success', 'Kategori updated successfully');
     }
 
     // Novel
@@ -194,8 +269,6 @@ class AdminController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
-
 
     public function logoutAdmin(Request $request)
     {
