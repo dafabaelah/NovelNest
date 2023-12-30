@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mt-4 mb-5 flex justify-start">
-        <a href="{{ route('userCreate') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="{{ route('kategoriCreate') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Tambah Ketegori
         </a>
     </div>
@@ -47,7 +47,7 @@
                             {{ $k->slug_kategori }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <a href="{{ route('userEdit', ['id' => $k->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="{{ route('kategoriEdit', ['id' => $k->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         </td>
                     </tr>
                 @endforeach
