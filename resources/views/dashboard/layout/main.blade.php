@@ -19,5 +19,30 @@
         @include('dashboard.layout.footer')
         
     </div>
+    {{-- <script>
+        let currentParagraph = 0;
+        const paragraphs = document.querySelectorAll('#novel-content > p');
+
+        function showParagraph(index) {
+            paragraphs.forEach((paragraph, i) => {
+                paragraph.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function changeParagraph(direction) {
+            currentParagraph += direction;
+
+            if (currentParagraph < 0) {
+                currentParagraph = 0;
+            } else if (currentParagraph >= paragraphs.length) {
+                currentParagraph = paragraphs.length - 1;
+            }
+
+            showParagraph(currentParagraph);
+        }
+
+        // Show the first paragraph initially
+        showParagraph(currentParagraph);
+    </script> --}}
 </body>
 </html>

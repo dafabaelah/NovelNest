@@ -50,8 +50,8 @@ class User extends Authenticatable
     public $timestamps = true;
     protected $enums = ['admin', 'user'];
 
-    public function hasRole($roles)
+    public function hasRole($role)
     {
-        return in_array($this->role, $roles);
+        return $this->role === $role;
     }
 }

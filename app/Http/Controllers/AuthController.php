@@ -67,7 +67,7 @@ class AuthController extends Controller
         return back()->with('status', 'Invalid login details');
     }
 
-    public function logout(Request $request)
+    public function logoutUser(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
