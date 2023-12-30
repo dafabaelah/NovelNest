@@ -9,14 +9,15 @@
     <title>Halaman Login</title>
 </head>
 <body>
-<section class="h-screen bg-cover bg-no-repeat bg-center bg-blend-multiply rounded-full" style="background-image: url('images/bgLoginRegistrasi.jpg');">
+<section class="h-screen bg-cover bg-no-repeat bg-center bg-blend-multiply" style="background-image: url('images/bgLoginRegister.jpg');">
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-  <img class="mx-auto h-20 w-auto" src="images/logoLoginRegister.jpg" alt="Logo">
+  <img class="mx-auto h-20 w-auto" src="images/logoLR.png" alt="Logo">
     <h2 class="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900">Log In</h2>
   </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+  <div class="bg-brown p-6 mt-10 sm:mx-auto sm:w-full sm:max-w-sm rounded-md shadow-md">
     <form class="space-y-6" action="{{ route('authenticate') }}" method="POST">
       @csrf
       <div>
@@ -45,13 +46,13 @@
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log In</button>
+        <button type="submit" class="flex w-full justify-center text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log In</button>
       </div>
     </form>
 
     <p class="mt-10 text-center text-sm text-gray-500">
       Don't have an account?
-      <a href="/register" class="text-gray-500 hover:text-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm">Please, Register Here!</a>
+      <a href="/register" class="text-gray-500 hover:text-gray-900 focus:outline-none font-medium text-sm">Please, Register Here!</a>
     </p>
   </div>
 </div>

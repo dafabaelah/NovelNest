@@ -71,3 +71,4 @@ Route::controller(UserController::class,)->group(function() {
     // Route::post('/admin/users/store', 'storeUser')->name('storeUser');
     // Route::post('/admin/novel/store', 'novelStore')->name('novelStore');
 });
+
