@@ -2,7 +2,7 @@
 <nav class="bg-yellow-900 text-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="../images/logoLoginRegister.png" class="h-9 w-9 rounded-full" style="min-width" alt="NovelNest Logo" />
+        <img src="{{ asset('/images/logoLoginRegister.png')}}" class="h-9 w-9 rounded-full" style="min-width" alt="NovelNest Logo" />
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white md:hover:text-yellow-400">NovelNest</span>
     </a>
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -32,7 +32,7 @@
                     @else {{-- Jika bukan admin, anggap pengguna adalah user --}}
                         <li class="flex-1 items-center">
                             <a href="{{ route('writeNovel') }}" class="flex items-center px-4 py-2 text-sm text-white hover:bg-yellow-400 dark:bg-yellow-400 dark:text-gray-200 dark:hover:text-white">
-                                <svg class="w-3 h-3 mr-2 mt-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                <svg class="w-3 h-3 mr-2 mt-1 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279"/>
                                 </svg>
                                 Write
