@@ -17,14 +17,15 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
-
+      - name: composer updat
+        run: composer update
       - name: Install Composer Dependencies
         run: composer install --no-interaction --prefer-dist
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install NPM Dependencies
         run: npm install
