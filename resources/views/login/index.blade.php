@@ -16,6 +16,7 @@
     <h2 class="mt-2 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900">Log In</h2>
   </div>
 
+
   <div class="bg-brown p-6 mt-10 sm:mx-auto sm:w-full sm:max-w-sm rounded-md shadow-md">
     <form class="space-y-6" action="{{ route('authenticate') }}" method="POST">
       @csrf
