@@ -1,0 +1,45 @@
+name: Check Server and Laravel Status
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Install Composer Dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: Build assets with NPM (Assuming Tailwind CSS is configured in your Laravel project)
+        run: npm run production
+
+      - name: Start Laravel Server
+        run: php artisan serve --host=127.0.0.1 --port=8000 &
+
+      - name: Wait for Laravel to Start
+        run: sleep 10  # Adjust the duration based on your application's startup time
+
+      - name: Check Server Status
+        run: curl http://127.0.0.1:8000  # Adjust the URL based on your Laravel application
+
+      - name: Stop Laravel Server
+        run: pkill -f "php artisan serve"
