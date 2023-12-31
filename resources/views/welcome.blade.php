@@ -38,33 +38,33 @@
   </div>
   </div>
 </nav>
-<!-- hero Image start -->
 
+<!-- hero Image start -->
 <section class="bg-white dark:bg-gray-900">
-    <div id="animation-carousel" class="relative w-full" data-carousel="static">
+    <div id="animation-carousel" class="relative w-full " data-carousel="static">
         <!-- Carousel wrapper -->
-        <div class="relative h-56 z-10 overflow-hidden rounded-lg md:h-96 mt-16">
+        <div class="relative h-screen z-10 overflow-hidden mt-16">
                 <!-- Item 1 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="/images/novel1.jpg" class="object-contain w-full h-auto absolute block  -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src="/images/N.jpg" class=" object-contain  absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="/images/novel2.jpg" class=" object-contain h-auto absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <img src="/images/N2.jpg" class=" object-contain  absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item="active">
-                    <img src="/images/novel3.jpg" class="h-auto absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <img src="/images/N3.jpg" class=" absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 4 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="/images/novel4.jpg" class="h-auto absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <img src="/images/N4.jpg" class="h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 <!-- Item 5 -->
                 <div class="hidden duration-200 ease-linear" data-carousel-item>
-                    <img src="/images/novel5.jpg" class="h-auto absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <img src="/images/N5.jpg" class="h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
-            </div>
+        </div>
             <!-- Slider controls -->
             <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -86,7 +86,7 @@
 </section>
 <!-- Hero image End -->
 
-<section id="home" class="bg-blue-200 dark:bg-blue-200 pt-35 pb-16 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
+<section id="home" class="bg-blue-200 dark:bg-blue-200 pt-20 pb-16 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
     <div class="py-10 px-8 mx-auto max-w-screen-xl text-center lg:py-20">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-blue-900 md:text-5xl lg:text-6xl dark:text-blue-900">Selamat Datang Di Website NovelNest</h1>
         <p class="mb-8 text-lg font-normal text-blue-900 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">NovelNest adalah Website yang mengenalkan dan mencerminkan beragam novel dengan membawa cerita ke buku yang diterbitkan dan ke rak buku di seluruh dunia. NovelNest menampilkan sebuah cerita website dan bisa kamu baca secara online.NovelNest tersebut akan update per-bab dengan jadwal tertentu, sehingga pembaca harus mengetahui jadwalnya agar tidak ketinggalan membaca.</p>
@@ -123,7 +123,7 @@
     </div>
 </section>
 
-<section id="feedback" class="bg-blue-200 dark:bg-blue-200 pt-35 pb-16 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]"">
+<section id="feedback" class="bg-blue-200 dark:bg-blue-200 pt-35 pb-16 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Dapatkan Cerita Favoritemu Di NovelNest</h1>
         <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">berikan komentar agar menjadi website lebih baik lagi</p>
@@ -139,7 +139,7 @@
     <div class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
 </section>
 
-<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+<footer class="bg-blue-200 dark:bg-blue-200 pt-35 pb-2 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
     <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
     <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
     </span>
