@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Build assets with NPM (Assuming Tailwind CSS is configured in your Laravel project)
-        run: npm run production
+        run: npm run build
 
       - name: Start Laravel Server
         run: php artisan serve --host=127.0.0.1 --port=8000 &
