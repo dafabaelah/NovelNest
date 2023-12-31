@@ -9,6 +9,7 @@ use App\Models\User;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -82,6 +83,13 @@ class AdminController extends Controller
         // $user->assignRole($request->role);
 
         return redirect()->route('userIndex')->with('success', 'User created successfully');
+    }
+
+    public function deleteUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('userIndex')->with('success', 'User deleted successfully');
     }
 
     // kategori
@@ -164,11 +172,27 @@ class AdminController extends Controller
         return redirect()->route('kategoriIndex')->with('success', 'Kategori updated successfully');
     }
 
+    public function deleteKategori(Request $request, $id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+        return redirect()->route('kategoriIndex')->with('success', 'Kategori deleted successfully');
+    }
+
     // Novel
     public function novelIndex()
     {
         $novels = Novel::all(); // Mengambil semua data novel
         return view('dashboard.admin.novel.index', compact('novels'));
+    }
+
+    public function novelIndexPdf()
+    {
+        $novels = Novel::all(); // Mengambil semua data novel
+        $pdf = Pdf::loadview('dashboard.admin.pdf.novel', compact('novels'));
+        // $pdf = app()->make('dompdf.wrapper');
+        // $pdf->loadView('dashboard.admin.pdf.novel', compact('novels'));
+        return $pdf->download('reporting-novel.pdf');
     }
 
     public function novelEdit(Request $request, $id)
@@ -268,6 +292,13 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function deleteNovel(Request $request, $id)
+    {
+        $novel = Novel::findOrFail($id);
+        $novel->delete();
+        return redirect()->route('novelIndex')->with('success', 'Post deleted successfully');
     }
 
     public function logoutAdmin(Request $request)

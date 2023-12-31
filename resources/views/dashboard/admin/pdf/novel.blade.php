@@ -1,21 +1,12 @@
-@extends('dashboard.layout.main')
-@extends('dashboard.layout.aside')
-
-@section('container')
-    <div class="text-center">
-        <button class="flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-            menu
-        </button>
-    </div>
-    <div class="my-8 mx-6 mt-4 mb-5 flex justify-start">
-        <a href="{{ route('writeNovel') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Tambah Novel
-        </a>
-    </div>
-    <div class="relative my-8 mx-6 shadow-md sm:rounded-lg">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        @vite(['resources/css/app.css','resources/js/app.js'])
+    <title>PDF - Novel</title>
+</head>
+<body>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -70,9 +61,6 @@
                             </a>
                         </div>
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -99,12 +87,10 @@
                         <td class="px-6 py-4">
                             {{ $n->total_like_novel }}
                         </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="{{ route('listWriteEdit', ['id' => $n->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-@endsection
+</body>
+</html>
