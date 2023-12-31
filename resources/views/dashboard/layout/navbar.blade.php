@@ -22,7 +22,7 @@
                 @if(auth()->check()) {{-- Memeriksa apakah pengguna sudah masuk --}}
                     @if(auth()->user()->hasRole('admin')) {{-- Memeriksa apakah pengguna adalah admin --}}
                         <li class="flex-1 items-center">
-                            <a href="{{ route('admin') }}" class="flex items-center px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            <a href="{{ route('admin') }}" class="flex items-center px-4 py-2 text-sm text-white hover:bg-yellow-400 dark:bg-yellow-400 dark:text-gray-200 dark:hover:text-white">
                                 <svg class="w-3 h-3 mr-2 mt-1 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279"/>
                                 </svg>
@@ -31,7 +31,7 @@
                         </li>
                     @else {{-- Jika bukan admin, anggap pengguna adalah user --}}
                         <li class="flex-1 items-center">
-                            <a href="{{ route('writeNovel') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-yellow-400 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            <a href="{{ route('writeNovel') }}" class="flex items-center px-4 py-2 text-sm text-white hover:bg-yellow-400 dark:bg-yellow-400 dark:text-gray-200 dark:hover:text-white">
                                 <svg class="w-3 h-3 mr-2 mt-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279"/>
                                 </svg>
@@ -41,8 +41,8 @@
                     @endif
                 @endif
                 <li class="flex-1 items-center">
-                    <a href="{{ route('logoutUser') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-yellow-400 dark:text-gray-200 dark:hover:text-white" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"><svg class="w-3 h-3 mr-2 mt-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
+                    <a href="{{ route('logoutUser') }}" class="flex items-center px-4 py-2 text-sm text-white hover:bg-yellow-400 dark:text-gray-200 dark:hover:text-white" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><svg class="w-3 h-3 mr-2 mt-1 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
                     </svg> Sign Out</a>
                     <form id="logout-form" action="{{ route('logoutUser') }}" method="POST">
@@ -91,7 +91,7 @@
                 </div>
             </li> --}}
             <li>
-                <a href="/riwayat" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Riwayat</a>
+                <a href="{{ route('showReadingHistory') }}" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Riwayat</a>
             </li>
         </ul>
     </div>
