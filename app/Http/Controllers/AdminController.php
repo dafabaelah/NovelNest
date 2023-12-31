@@ -16,7 +16,13 @@ class AdminController extends Controller
     // dashboard
     public function index()
     {
-        return view('dashboard.admin.index');
+        $novels = Novel::all();
+
+        $data = [
+            'labels' => $novels->pluck('nama_novel'),
+            'data' => $novels->pluck('total_view_novel'),
+        ];
+        return view('dashboard.admin.index', compact('data'));
     }
     // users
     public function userIndex()
