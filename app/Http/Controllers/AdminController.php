@@ -9,6 +9,7 @@ use App\Models\User;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -169,6 +170,15 @@ class AdminController extends Controller
     {
         $novels = Novel::all(); // Mengambil semua data novel
         return view('dashboard.admin.novel.index', compact('novels'));
+    }
+
+    public function novelIndexPdf()
+    {
+        $novels = Novel::all(); // Mengambil semua data novel
+        $pdf = Pdf::loadview('dashboard.admin.pdf.novel', compact('novels'));
+        // $pdf = app()->make('dompdf.wrapper');
+        // $pdf->loadView('dashboard.admin.pdf.novel', compact('novels'));
+        return $pdf->download('reporting-novel.pdf');
     }
 
     public function novelEdit(Request $request, $id)

@@ -1,16 +1,11 @@
-@extends('dashboard.admin.layout.main')
-
-@section('content')
-    <div class="mt-4 mb-5 flex justify-start">
-        <a href="{{ route('novelCreate') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Tambah Novel
-        </a>
-    </div>
-    <div class="mb-5 flex justify-end">
-        <a href="{{ route('novelIndexPdf') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-2">
-            PDF Novel
-        </a>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        @vite(['resources/css/app.css','resources/js/app.js'])
+    <title>PDF - Novel</title>
+</head>
+<body>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -66,9 +61,6 @@
                             </a>
                         </div>
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -95,12 +87,10 @@
                         <td class="px-6 py-4">
                             {{ $n->total_like_novel }}
                         </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="{{ route('novelEdit', ['id' => $n->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-@endsection
+</body>
+</html>

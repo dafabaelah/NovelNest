@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin/novel/edit/{id}', [AdminController::class, 'novelEdit'])->name('novelEdit');
     Route::get('/admin/novel/create', [AdminController::class, 'novelCreate'])->name('novelCreate');
     Route::put('/admin/novel/update/{id}', [AdminController::class, 'updateNovel'])->name('updateNovel');
+    Route::get('/admin/novel/pdf', [AdminController::class, 'novelIndexPdf'])->name('novelIndexPdf');
     // Route::post('/admin/novel/store', 'AdminController@novelStore')->name('novelStore');
 });
 
