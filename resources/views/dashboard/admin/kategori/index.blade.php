@@ -29,8 +29,11 @@
                             </a>
                         </div>
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="py-3">
                         <span class="sr-only">Edit</span>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Hapus</span>
                     </th>
                 </tr>
             </thead>
@@ -46,8 +49,15 @@
                         <td class="px-6 py-4">
                             {{ $k->slug_kategori }}
                         </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="py-4 text-right">
                             <a href="{{ route('kategoriEdit', ['id' => $k->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{{ route('deleteKategori', ['id' => $k->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $k->id }}').submit();">Hapus</a>
+                            <form id="delete-form-{{ $k->id }}" action="{{ route('deleteKategori', ['id' => $k->id]) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
                 @endforeach

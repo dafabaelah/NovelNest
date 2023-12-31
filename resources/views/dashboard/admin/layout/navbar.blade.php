@@ -33,9 +33,6 @@
                             @endif
                         </div>
                         <ul class="py-1" role="none">
-                            <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                            </li>
                             <li class="flex-1 items-center">
                                 <a href="{{ route('logoutAdmin') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><svg class="w-3 h-3 mr-2 mt-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">

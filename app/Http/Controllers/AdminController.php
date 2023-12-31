@@ -85,6 +85,13 @@ class AdminController extends Controller
         return redirect()->route('userIndex')->with('success', 'User created successfully');
     }
 
+    public function deleteUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('userIndex')->with('success', 'User deleted successfully');
+    }
+
     // kategori
     public function kategoriIndex()
     {
@@ -163,6 +170,13 @@ class AdminController extends Controller
         $kategori->update($dataToUpdate);
 
         return redirect()->route('kategoriIndex')->with('success', 'Kategori updated successfully');
+    }
+
+    public function deleteKategori(Request $request, $id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+        return redirect()->route('kategoriIndex')->with('success', 'Kategori deleted successfully');
     }
 
     // Novel
@@ -278,6 +292,13 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function deleteNovel(Request $request, $id)
+    {
+        $novel = Novel::findOrFail($id);
+        $novel->delete();
+        return redirect()->route('novelIndex')->with('success', 'Post deleted successfully');
     }
 
     public function logoutAdmin(Request $request)
