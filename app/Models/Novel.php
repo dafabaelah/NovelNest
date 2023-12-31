@@ -9,15 +9,20 @@ class Novel extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'images',
-        'author',
-        'deskripsi_buku',
-        'judul_buku',
-    ];
+    protected $fillable = ['nama_novel', 'gambar_novel', 'deskripsi_novel', 'total_view_novel', 'total_like_novel', 'id_user', 'id_kategori', 'jumlah_halaman_novel'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
+    
+    public function riwayatBaca()
+    {
+        return $this->hasMany(RiwayatBaca::class, 'id_novel');
+    }
 }
