@@ -289,4 +289,19 @@ class UserController extends Controller
         // dd($riwayatBaca);
         return view('dashboard.user.riwayat.index', compact('riwayatBaca'));
     }
+
+    // live search
+    public function liveSearch(Request $request)
+    {
+        $search = $request->get('search');
+        $novels = Novel::where('nama_novel', 'LIKE', '%' . $search . '%')->get();
+        $novels->each(function ($novel) {
+            if ($novel->gambar_novel) {
+                $novel->gambar_novel = asset('storage/uploads/' . $novel->gambar_novel);
+            } else {
+                $novel->gambar_novel = null;
+            }
+        });
+        return view('dashboard.user.index', compact('novels'));
+    }
 }
