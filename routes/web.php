@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/kategori', [UserController::class, 'listKategori'])->name('listKategori');
     Route::post('/like-novel/{novelId}', [UserController::class, 'likeNovel'])->name('likeNovel');
     Route::get('/riwayat', [UserController::class, 'showReadingHistory'])->name('showReadingHistory');
+    Route::post('/live-search', [UserController::class, 'liveSearch'])->name('liveSearch');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function() {
