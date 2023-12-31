@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="mt-4 mb-5 flex justify-start">
-        <a href="{{ route('kategoriCreate') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="{{ route('kategoriCreate') }}" class="text-white bg-yellow-900 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-700 font-medium rounded-lg text-sm px-4 py-2 dark:bg-yellow-900 dark:hover:bg-yellow-700 dark:focus:ring-yellow-700">
             Tambah Ketegori
         </a>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-white uppercase bg-yellow-900 dark:bg-gray-700 dark:text-white">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Nomer
